@@ -75,6 +75,8 @@ void handleGetData() {
 //        message.concat("\"");
         message.concat(" MQTTTopic=");
         message.concat(mqtt_topic);
+        message.concat(" Delay=");
+        message.concat(PublishDelay);
         message.concat(" www-user=");
         message.concat(www_username);
         message.concat(" www-pass=NoneNone");
