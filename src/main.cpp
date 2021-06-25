@@ -17,15 +17,15 @@
 //#include <DNSServer.h>
 #include <ESP8266WebServer.h>
 #include <WiFiManager.h>         //https://github.com/tzapu/WiFiManager
-#include <ArduinoOTA.h>
 #include <PubSubClient.h>
 #include <EEPROM.h>
 #include <Ticker.h>
+#include "LittleFS.h"
 
 /*
  * Version
  */
-const char* P1Version = "2.0";
+const char* P1Version = "2.0alfa1";
 
 #define DEBUGo
 //
@@ -81,7 +81,7 @@ char mqtt_topic[MQTTTOPIC_LEN] = "energy/p1";
 char OTAPassword[OTAPASS_LEN] = "";
 char www_username[WWWUSER_LEN] = "admin";
 char www_password[WWWPASS_LEN] = "smartmeter-p1";
-char fingerprint[MQTTS_LEN];// = "AC:99:C5:54:E1:F1:3E:41:3D:7A:34:92:7E:79:42:54:1E:A2:69:08";
+char fingerprint[MQTTS_LEN];
 // allows you to set the realm of authentication Default:"Login Required"
 const char* www_realm = "Setup smartmeter-p1";
 // the Content of the HTML response in case of Unautherized Access Default:empty
@@ -131,6 +131,13 @@ void setup() {
   Serial.println(" on Wemos D1 Mini & R2");
   Serial.print("Version : ");
   Serial.println(P1Version);
+
+  Serial.print(F("Inizializing FS..."));
+  if (LittleFS.begin()) {
+    Serial.println(F("done."));
+  } else {
+   Serial.println(F("fail."));
+  }
   
   EEPROMsetup();
   ioSetup();

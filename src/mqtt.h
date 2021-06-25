@@ -1,5 +1,5 @@
 /*
- * sm-mqtt.h
+ * mqtt.h
  * 
  * module to handle mqtt stuff
  */

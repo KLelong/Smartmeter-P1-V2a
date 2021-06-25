@@ -1,5 +1,5 @@
 /*
- * sm-eeprom.h
+ * eeprom.h
  * 
  * module to handle EEPROM
  */

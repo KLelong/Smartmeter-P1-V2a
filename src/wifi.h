@@ -1,5 +1,5 @@
 /*
- * sm-wifi.h
+ * wifi.h
  * 
  * module to setup wiFi
  */

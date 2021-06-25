@@ -1,5 +1,5 @@
 /*
- * sm-serial.h
+ * serial.h
  * 
  * module to read Smartmeter data from serial port
  */

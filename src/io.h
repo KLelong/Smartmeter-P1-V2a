@@ -1,5 +1,5 @@
 /*
- * sm-io.h
+ * io.h
  * 
  * module to setup IO use
  */
