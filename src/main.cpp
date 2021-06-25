@@ -27,7 +27,7 @@
  */
 const char* P1Version = "2.0alfa1";
 
-#define DEBUGo
+#define DEBUG
 //
 // If we did then DEBUG_LOG will log a string, otherwise
 // it will be ignored as a comment.

@@ -8,14 +8,18 @@
   <link rel="Shortcut Icon" type="image/ico" href="favicon.ico">
  </head>
  <body>
-  <ul>
-   <li><a class="pull-left" href="#">Smartmeter P1</a></li>
-   <li><a class="pull-left" href="/index.html">Data</a></li>
-   <li><a class="pull-left active" href="/setup.html">Setup</a></li>
-   <li><a class="pull-left" href="/about.html">Over</a></li>
-  </ul>
-  <br><br><br>
-  <center>
+  <div class="topnav" id="myTopnav">
+    <a href="#" class="disabled">Energy Display</a>
+     <div class="topnav-right">
+         <a href="index.html">Data</a>
+         <a href="setup.html">Instellen</a>
+         <a href="about.html">Over</a>
+     </div>
+     <a href="javascript:void(0);" class="icon" onclick="handleNavBar()">
+       <i class="fa fa-bars"></i>
+     </a>
+   </div>
+   <div class="content">
    <h1>** Smartmeter P1 **</h1>
    <p>U kan de configuratie hier aanpassen.<br> <i>Bedenk wel dat de aanpassingen maar effectief zijn na het herstarten van het apparaat.</i>
    </p>
@@ -107,7 +111,8 @@
 </tr>
 </table>
 </div>
- <br><input class="config" type="text" id="resultstr" placeholder="Waiting for input...." readonly>
+</div> 
+<br><input class="config" type="text" id="resultstr" placeholder="Waiting for input...." readonly>
  <br><br>
    <button class="button" onclick="savePref()">Save</button>
    &nbsp;&nbsp;

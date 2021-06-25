@@ -4,73 +4,79 @@
   <title>Smartmeter P1</title>
   <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="style.css">
-  <link rel="Shortcut Icon" type="image/ico" href="favicon.ico">
+  <link rel="Shortcut Icon" type="image/png" href="favicon.png">
  </head>
  <body>
-  <ul>
-   <li><a class="pull-left" href="#">Smartmeter P1</a></li>
-   <li><a class="pull-left active" href="index.html">Data</a></li>
-   <li><a class="pull-left" href="setup.html">Setup</a></li>
-   <li><a class="pull-left" href="about.html">Over</a></li>
-  </ul>
-  <br><br><br>
-  <center>
-   <h1>** Smartmeter P1 **</h1>
-   <label><big>Versie : </big></label>
-   <input class="Version" type="text" size="4" id="Version" placeholder="Versie" readonly>
-   <br>
-   <label>WiFi signaal : </label>
-   <input class="Version" type="text" size="4" id="rssi" placeholder="WiFi signaal" readonly>
-   <br><br>
-   <div style="overflow-x:auto;">
-   <table style="width:600px">
-    <tr>
-     <td><center>
-      <label for="HA"><big>Energie verbruik tarief 1: </big></label>
-      <br>
-      <input type="text" size="10" id="ConsDay" placeholder="cons tarief 1..." readonly> Wh
-     </td>
-     <td><center>
-      <label for="HF"><big>Energie verbruik tarief 2: </big></label>
-      <br>
-      <input type="text" size="10" id="ConsNight" placeholder="cons tarief 2..." readonly> Wh
-     </center></td>
-    </tr>
-    <tr>
-     <td><center>
-      <label for="LA"><big>Energie productie tarief 1: </big></label>
-      <br>
-      <input type="text" size="10" id="ProdDay" placeholder="prod tarief 1..." readonly> Wh
-     </td>
-     <td><center>
-      <label for="LF"><big>Energie productie tarief 2: </big></label>
-      <br>
-      <input type="text" size="10" id="ProdNight" placeholder="prod tarief 2..." readonly> Wh
-     </center></td>
-    </tr>
-    <tr>
-     <td><center>
-      <label for="LA"><big>Energie verbruik nu: </big></label>
-      <br>
-      <input type="text" size="10" id="ConsNow" placeholder="cons nu..." readonly> W
-     </td>
-     <td><center>
-      <label for="LF"><big>Energie productie nu: </big></label>
-      <br>
-      <input type="text" size="10" id="ProdNow" placeholder="prod nu..." readonly> W
-     </center></td>
-    </tr>
-    <tr>
-     <td><center>
-      <label for="LA"><big>Gas verbruik: </big></label>
-      <br>
-      <input type="text" size="10" id="ConsGas" placeholder="cons gas..." readonly> m&sup3
-     </td>
-    </tr>
-   </table>
+  <div class="topnav" id="myTopnav">
+    <a href="#" class="disabled">Energy Display</a>
+     <div class="topnav-right">
+         <a href="index.html">Data</a>
+         <a href="setup.html">Instellen</a>
+         <a href="about.html">Over</a>
+     </div>
+     <a href="javascript:void(0);" class="icon" onclick="handleNavBar()">
+       <i class="fa fa-bars"></i>
+     </a>
    </div>
-  </center>
+   <div class="content";>
+
+    <h1>** Smartmeter P1 **</h1>
+    <label><big>Versie : </big></label>
+    <input class="Version" type="text" size="4" id="Version" placeholder="Versie" readonly>
+    <br>
+    <label>WiFi signaal : </label>
+    <input class="Version" type="text" size="4" id="rssi" placeholder="WiFi signaal" readonly>
+    <br><br>
+    <div style="overflow-x:auto;">
+    <table style="width:600px">
+     <tr>
+      <td><center>
+       <label for="HA"><big>Energie verbruik tarief 1: </big></label>
+       <br>
+       <input type="text" size="10" id="ConsDay" placeholder="cons tarief 1..." readonly> Wh
+      </td>
+      <td><center>
+       <label for="HF"><big>Energie verbruik tarief 2: </big></label>
+       <br>
+       <input type="text" size="10" id="ConsNight" placeholder="cons tarief 2..." readonly> Wh
+      </center></td>
+     </tr>
+     <tr>
+      <td><center>
+       <label for="LA"><big>Energie productie tarief 1: </big></label>
+       <br>
+       <input type="text" size="10" id="ProdDay" placeholder="prod tarief 1..." readonly> Wh
+      </td>
+      <td><center>
+       <label for="LF"><big>Energie productie tarief 2: </big></label>
+       <br>
+       <input type="text" size="10" id="ProdNight" placeholder="prod tarief 2..." readonly> Wh
+      </center></td>
+     </tr>
+     <tr>
+      <td><center>
+       <label for="LA"><big>Energie verbruik nu: </big></label>
+       <br>
+       <input type="text" size="10" id="ConsNow" placeholder="cons nu..." readonly> W
+      </td>
+      <td><center>
+       <label for="LF"><big>Energie productie nu: </big></label>
+       <br>
+       <input type="text" size="10" id="ProdNow" placeholder="prod nu..." readonly> W
+      </center></td>
+     </tr>
+     <tr>
+      <td><center>
+       <label for="LA"><big>Gas verbruik: </big></label>
+       <br>
+       <input type="text" size="10" id="ConsGas" placeholder="cons gas..." readonly> m&sup3
+      </td>
+     </tr>
+    </table>
+    </div>
+    </div>
    <script>
    function httpGet ( theReq )
    {
