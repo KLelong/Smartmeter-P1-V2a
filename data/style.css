@@ -146,3 +146,8 @@ td.config {
 input.config {
    width: 300px;
 }
+input.Version {
+  text-align: center;
+  border: 0px;
+  background-color: transparent;
+}
