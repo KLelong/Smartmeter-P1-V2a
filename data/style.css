@@ -82,11 +82,11 @@ This class makes the topnav look good on small screens (display the links vertic
   padding: 5%;
 }
 .card-grid {
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: 550px;
+  margin: 20px auto;
   display: grid;
   grid-gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 .card {
   background-color: white;

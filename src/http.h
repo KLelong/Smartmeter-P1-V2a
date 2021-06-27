@@ -36,8 +36,8 @@ bool is_authenticated() {
 void handleGetData() {
   char output[BUFF_LEN] = "Not recognized";
   String tempStr;
-//  char temp[32];
-//  char temp1[32];
+  char temp[32];
+  char temp1[32];
   char msgpub[BUFF_LEN];
   String message="";
 
@@ -47,14 +47,56 @@ void handleGetData() {
   if (httpserver.args()>0) {
     if (httpserver.argName(0)==String("data")) {
       rssi = WiFi.RSSI();
+      if (powerConsumptionDay>0) {
+        message.concat("ConsDay=");
+        tempStr="%lu";
+        tempStr.toCharArray(temp,32);
+        sprintf(temp1,temp,powerConsumptionDay);
+        message.concat(temp1);
+        message.concat(" ");
+      }
+      if (powerConsumptionNight>0) {
+        message.concat("ConsNight=");
+        tempStr="%lu";
+        tempStr.toCharArray(temp,32);
+        sprintf(temp1,temp,powerConsumptionNight);
+        message.concat(temp1);
+        message.concat(" ");
+      }
+      if (powerProductionDay>0) {
+        message.concat("ProdDay=");
+        tempStr="%lu";
+        tempStr.toCharArray(temp,32);
+        sprintf(temp1,temp,powerProductionDay);
+        message.concat(temp1);
+        message.concat(" ");
+      }
+      if (powerProductionNight>0) {
+        message.concat("ProdNight=");
+        tempStr="%lu";
+        tempStr.toCharArray(temp,32);
+        sprintf(temp1,temp,powerProductionNight);
+        message.concat(temp1);
+        message.concat(" ");
+      }
+      if (GasConsumption>0) {
+        message.concat("ConsGas=");
+        tempStr="%1.3f";
+        tempStr.toCharArray(temp,32);
+        sprintf(temp1,temp,GasConsumption);
+        message.concat(temp1);
+        message.concat(" ");
+      }
+      message.concat("ConsNow=%lu ");
+      message.concat("ProdNow=%lu ");
       message.concat("Version=");
       message.concat(P1Version);
       message.concat(" Delay=");
       message.concat(PublishDelay);
       message.concat(" rssi=%d");
       
-      message.toCharArray(msgpub, BUFF_LEN);
-      sprintf(output,msgpub,rssi);
+      message.toCharArray(msgpub, 256);
+      sprintf(output,msgpub,CurrentPowerConsumption,CurrentPowerProduction,rssi);
       DEBUG_LOG(output);
       DEBUG_LOG("\n");
     }
