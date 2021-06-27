@@ -16,3 +16,13 @@ function toggleCheckbox (element) {
     document.getElementById("MQTTFingerOn").style.display = "none"; 
   }
 }
+function toggleESPnow (element) {
+  if (element.checked) {
+    document.getElementById("noMQTT").style.display = "none";
+    document.getElementById("noESPnow").style.display = "block";
+  }
+  else {
+    document.getElementById("noMQTT").style.display = "block";
+    document.getElementById("noESPnow").style.display = "none"; 
+  }
+}

@@ -24,97 +24,70 @@
    <h1>Smartmeter P1</h1>
    <p>U kan de configuratie hier aanpassen.<br> <i>Let er wel op dat de aanpassingen maar effectief zijn na het herstarten van het apparaat.</i>
    </p>
-    <div class="config">
-      <center>
-        <table style="width:600px">
-<tr>
-  <td class="config">
-      <label><big>Hostnaam : </big></label>
-      
-  </td>
-  <td>
-      <input class="config" type="text" size="32" id="HostName" placeholder="Hostname">
-  </td>
-</tr>
-
-<tr>
-  <td class="config">
-     <label for="HF"><big>Setup user :</big></label>
-  </td>
-  <td>
+    <div class="setup-grid">
+     <div class="card">
+     <label><big>Hostnaam : </big></label>
+     <input class="config" type="text" size="32" id="HostName" placeholder="Hostname">
+     </div>
+     <div class="card">
+     <label><big>Setup user :</big></label>
      <input class="config" type="text" id="www-user" placeholder="Setup user">
-  </td>
-</tr>
-<tr>
-  <td class="config">
-     <label for="HF"><big>Setup password :</big></label>
-  </td>
-  <td>
+     </div>
+     <div class="card">
+     <label><big>Setup password :</big></label>
      <input class="config" type="password" id="www-pass" placeholder="Setup password">
-  </td>
-</tr>
-
-<tr>
-  <td class="config">
+     </div>
+     <div class="card">
+     <label><big>ESP-now :</big></label>
+     <label class="switch">
+     <input type="checkbox" onchange="toggleESPnow(this)" id="ESPnow">
+     <span class="slider"></span> 
+     </label>
+     </div>
+     <div class="card" id="noESPnow">
+     <label><big>ESPnow peer :</big></label>
+     <input class="config" type="text" id="ESPnowPeer" placeholder="ESPnow peer">
+     </div>
+     <div class="card" id="noMQTT" style="display:block;">
+     <div class="card">
      <label><big>MQTT server :</big></label>
-  </td>
-  <td>
      <input class="config" type="text" id="MQTTServ" placeholder="MQTT server">
-  </td>
-</tr>
-<tr>
-  <td class="config">
-      <label for="LA"><big>MQTT port : </big></label>
-  </td>
-  <td>
-      <input class="config" type="text" id="MQTTPort" placeholder="1883">
-  </td>
-</tr>
-<tr>
-  <td class="config">
-      <label for="LA"><big>MQTT user : </big></label>
-  </td>
-  <td>
-      <input class="config" type="text" id="MQTTUsr" placeholder="MQTT user">
-  </td>
-</tr>
-<tr>
-  <td class="config">
-     <label for="HF"><big>MQTT password :</big></label>
-  </td>
-  <td>
+     </div>
+     <div class="card">
+     <label><big>MQTT port : </big></label>
+     <input class="config" type="text" id="MQTTPort" placeholder="1883">
+     </div>
+     <div class="card">
+     <label><big>MQTT user : </big></label>
+     <input class="config" type="text" id="MQTTUsr" placeholder="MQTT user">
+     </div>
+     <div class="card">
+     <label><big>MQTT password :</big></label>
      <input class="config" type="password" id="MQTTPass" placeholder="MQTT password">
-  </td>
-</tr>
-<tr>
-  <td class="config">
-     <label for="HF"><big>MQTT fingerprint :</big></label>
-  </td>
-  <td>
+     </div>
+     <div class="card">
+     <label><big>MQTT secure :</big></label>
+     <label class="switch">
+     <input type="checkbox" onchange="toggleCheckbox(this)" id="MQTTs">
+     <span class="slider"></span> 
+     </label>
+     </div>
+     <div class="card" id="MQTTFingerOn" style="display:block;">
+     <label><big>MQTT fingerprint :</big></label>
      <input class="config" type="text" id="MQTTfinger" placeholder="MQTT fingerprint">
-  </td>
-</tr>
-<tr>
-  <td class="config">
-     <label for="HF"><big>MQTT topic :</big></label>
-  </td>
-  <td>
+     </div>
+     <div class="card">
+     <label><big>MQTT topic :</big></label>
      <input class="config" type="text" id="MQTTTopic" placeholder="energy/p1">
-  </td>
-</tr>
-<tr>
-  <td class="config">
-     <label for="HF"><big>Delay :</big></label>
-  </td>
-  <td>
+     </div>
+     <div class="card">
+     <label><big>Delay :</big></label>
      <input class="config" type="number" min="1" max="99999" size="40" id="Delay" placeholder="Delay">
-  </td>
-</tr>
-</table>
-</center>
+     </div>
+	 </div>
+	 </div>
 </div>
-</div> 
-<br><input class="config" type="text" id="resultstr" placeholder="Waiting for input...." readonly>
+<input class="config" type="text" id="resultstr" placeholder="Waiting for input...." readonly>
  <br><br>
    <button class="button" onclick="savePref()">Save</button>
    &nbsp;&nbsp;
@@ -123,9 +96,7 @@
    <button class="button buttonr" onclick="location.href = '/update.html';">Update</button>
    &nbsp;&nbsp;
    <button class="button" onclick="httpGet('getdefs')">Default</button>
-
-    <script>
-
+   <script>
     // Save the preferences
    function savePref()
    {
