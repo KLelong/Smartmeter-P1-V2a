@@ -112,9 +112,7 @@ void handleGetData() {
         message.concat(mqtt_client);
         message.concat(" MQTTPass=NoneNone");
         message.concat(" MQTTfinger=");
-//        message.concat("\"");
         message.concat(fingerprint);
-//        message.concat("\"");
         message.concat(" MQTTTopic=");
         message.concat(mqtt_topic);
         message.concat(" Delay=");
@@ -122,6 +120,12 @@ void handleGetData() {
         message.concat(" www-user=");
         message.concat(www_username);
         message.concat(" www-pass=NoneNone");
+        message.concat(" MQTTs=");
+        if (MQTTsecure) message.concat("1");
+        else message.concat("0");
+        message.concat(" ESPnow=");
+        if (ESPnow) message.concat("1");
+        else message.concat("0");
         message.toCharArray(msgpub, BUFF_LEN);
         sprintf(output,msgpub);
         DEBUG_LOG(output);
@@ -246,6 +250,18 @@ void handlePostData() {
             if (httpserver.argName(i)=="www-user") {
                 EEPROMwriteString(WWWUSER_ADDR,httpserver.arg(i),WWWUSER_LEN);
                 DEBUG_LOG("saved\n");
+            }
+            else
+            if (httpserver.argName(i)=="ESPnow") {
+              if (httpserver.arg(i)=="false") EEPROMwriteString(ESPnowE_ADDR,"0",ESPnowE_LEN);
+              else  EEPROMwriteString(ESPnowE_ADDR,"1",ESPnowE_LEN);
+              DEBUG_LOG("saved\n");
+            }
+            else
+            if (httpserver.argName(i)=="MQTTs") {
+              if (httpserver.arg(i)=="false") EEPROMwriteString(MQTTSE_ADDR,"0",MQTTSE_LEN);
+              else  EEPROMwriteString(MQTTSE_ADDR,"1",MQTTSE_LEN);
+              DEBUG_LOG("saved\n");
             }
           }
           message="prefs saved";

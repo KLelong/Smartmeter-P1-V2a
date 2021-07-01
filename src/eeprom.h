@@ -128,13 +128,6 @@ void EEPROMsetup() {
   DEBUG_LOG(PublishDelay);
   DEBUG_LOG("\n");
 
-  tempString=EEPROMreadString(OTAPASS_ADDR,OTAPASS_LEN);
-  if (tempString.length()>0) 
-    tempString.toCharArray(OTAPassword,OTAPASS_LEN);
-  DEBUG_LOG("OTApassw :");
-  DEBUG_LOG(OTAPassword);
-  DEBUG_LOG("\n");
-
   tempString=EEPROMreadString(WWWUSER_ADDR,WWWUSER_LEN);
   if (tempString.length()>0) 
     tempString.toCharArray(www_username,WWWUSER_LEN);
@@ -155,6 +148,25 @@ void EEPROMsetup() {
   DEBUG_LOG("mqtt fingerprint :");
   DEBUG_LOG(fingerprint);
   DEBUG_LOG("\n");
+
+/*
+#define ESPnowP_ADDR ESPnowE_ADDR+ESPnowE_LEN 
+#define ESPnowP_LEN 16    // ESPnow peer address
+
+
+  tempString=EEPROMreadString(MQTTSE_ADDR,MQTTSE_LEN);
+  if (tempString.length()>0) 
+    tempString.toCharArray(MQTTsecure,MQTTS_LEN);
+  DEBUG_LOG("secure mqtt :");
+  DEBUG_LOG(fingerprint);
+  DEBUG_LOG("\n");
+
+  tempString=EEPROMreadString(ESPnowE_ADDR,ESPnowE_LEN);
+  if (tempString.length()>0) 
+    tempString.toCharArray(fingerprint,ESPnowE_LEN);
+  DEBUG_LOG("ESPnow :");
+  DEBUG_LOG(fingerprint);
+  DEBUG_LOG("\n"); */
 }
 }
  

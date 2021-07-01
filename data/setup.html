@@ -7,7 +7,8 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="style.css">
   <link rel="Shortcut Icon" type="image/png" href="favicon.png">
- </head>
+  <script src="script.js"></script>
+</head>
  <body>
   <div class="topnav" id="myTopnav">
     <a href="#" class="disabled">Smartmeter P1</a>
@@ -38,6 +39,10 @@
      <input class="config" type="password" id="www-pass" placeholder="Setup password">
      </div>
      <div class="card">
+      <label><big>Delay :</big></label>
+      <input class="config" type="number" min="1" max="999" size="40" id="Delay" placeholder="Delay">
+      </div>
+     <div class="card">
      <label><big>ESP-now :</big></label>
      <label class="switch">
      <input type="checkbox" onchange="toggleESPnow(this)" id="ESPnow">
@@ -45,10 +50,10 @@
      </label>
      </div>
      <div class="card" id="noESPnow">
-     <label><big>ESPnow peer :</big></label>
+     <label><big>ESP-now peer :</big></label>
      <input class="config" type="text" id="ESPnowPeer" placeholder="ESPnow peer">
      </div>
-     <div class="card" id="noMQTT" style="display:block;">
+      <div class="card" id="noMQTT" style="display:block;">
      <div class="card">
      <label><big>MQTT server :</big></label>
      <input class="config" type="text" id="MQTTServ" placeholder="MQTT server">
@@ -79,10 +84,6 @@
      <div class="card">
      <label><big>MQTT topic :</big></label>
      <input class="config" type="text" id="MQTTTopic" placeholder="energy/p1">
-     </div>
-     <div class="card">
-     <label><big>Delay :</big></label>
-     <input class="config" type="number" min="1" max="99999" size="40" id="Delay" placeholder="Delay">
      </div>
 	 </div>
 	 </div>
@@ -151,21 +152,26 @@
       tstr1="Delay=";
       str=str+tstr1+tstr2; 
      }
-
      tstr2=document.getElementById("www-user").value;
      if (tstr2.length>0) {
       str=str+"&";
       tstr1="www-user=";
       str=str+tstr1+tstr2; 
      }
-
      tstr2=document.getElementById("www-pass").value;
      if (tstr2.length>0) {
       str=str+"&";
       tstr1="www-pass=";
       str=str+tstr1+tstr2; 
      }
-
+     tstr2=document.getElementById("ESPnow").checked;
+      str=str+"&";
+      tstr1="ESPnow=";
+      str=str+tstr1+tstr2; 
+     tstr2=document.getElementById("MQTTs").checked;
+      str=str+"&";
+      tstr1="MQTTs=";
+      str=str+tstr1+tstr2; 
     while (str.indexOf(" ")>= 0)
        {
          str=str.replace(" ","")      
@@ -194,13 +200,33 @@
    var theUrl = "data/?config" + "&version=" + Math.random() ;
    var xhr = new XMLHttpRequest() ;
    xhr.onreadystatechange = function() {
-     if ( xhr.readyState == XMLHttpRequest.DONE )
-     {
+     if ( xhr.readyState == XMLHttpRequest.DONE ) {
        lines = xhr.responseText.split ( " " ) ;
-       for ( i = 0 ; i < (lines.length) ; i++ )
-       {
+       for ( i = 0 ; i < (lines.length) ; i++ ) {
          parts = lines[i].split ( "=" ) ;
-         document.getElementById(parts[0]).value = parts[1];
+         if ( parts[0] == "MQTTs") {
+    			 if ( parts[1] == "0") {
+		    		 document.getElementById(parts[0]).checked = false;
+    			 }
+    			 else {
+    				document.getElementById(parts[0]).checked = true;
+    			 }
+			     toggleCheckbox(document.getElementById(parts[0]));
+    		 }
+         else {
+          if ( parts[0] == "ESPnow") {
+    			 if ( parts[1] == "0") {
+		    		 document.getElementById(parts[0]).checked = false;
+    			 }
+    			 else {
+    				document.getElementById(parts[0]).checked = true;
+    			 }
+           toggleESPnow(document.getElementById(parts[0]));
+    		 }
+         else {
+          document.getElementById(parts[0]).value = parts[1];
+         }
+        }
        }
      }
    }
@@ -209,4 +235,3 @@
    </script>
   </body>
 </html>
-<script src="script.js"></script>

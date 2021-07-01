@@ -54,14 +54,20 @@ const char* P1Version = "2.0alfa1";
 #define MQTTCLIENT_LEN 33
 #define DELAY_ADDR MQTTCLIENT_ADDR+MQTTCLIENT_LEN
 #define DELAY_LEN 7
-#define OTAPASS_ADDR DELAY_ADDR+DELAY_LEN
-#define OTAPASS_LEN 33
+#define OTAPASS_ADDR DELAY_ADDR+DELAY_LEN   // Unused !!!
+#define OTAPASS_LEN 33                      // Unused !!!
 #define WWWUSER_ADDR OTAPASS_ADDR+OTAPASS_LEN
 #define WWWUSER_LEN 33
 #define WWWPASS_ADDR WWWUSER_ADDR+WWWUSER_LEN
 #define WWWPASS_LEN 33
 #define MQTTS_ADDR WWWPASS_ADDR+WWWPASS_LEN  //sha1-fingerprint of mqtt-server
 #define MQTTS_LEN 60
+#define MQTTSE_ADDR MQTTS_ADDR+MQTTS_LEN 
+#define MQTTSE_LEN 1    // Enable secure MQTT
+#define ESPnowE_ADDR MQTTSE_ADDR+MQTTSE_LEN
+#define ESPnowE_LEN 1    // Enable ESPnow
+#define ESPnowP_ADDR ESPnowE_ADDR+ESPnowE_LEN 
+#define ESPnowP_LEN 16    // ESPnow peer address
 
 IPAddress mqttServerIP;
 WiFiManager wifiManager;
@@ -78,14 +84,11 @@ char mqtt_pass[MQTTPASS_LEN] = "";
 char mqtt_port[MQTTPORT_LEN] = "1883";
 char mqtt_client[MQTTCLIENT_LEN] = "smartmeter";
 char mqtt_topic[MQTTTOPIC_LEN] = "energy/p1";
-char OTAPassword[OTAPASS_LEN] = "";
 char www_username[WWWUSER_LEN] = "admin";
 char www_password[WWWPASS_LEN] = "smartmeter-p1";
 char fingerprint[MQTTS_LEN];
-// allows you to set the realm of authentication Default:"Login Required"
-const char* www_realm = "Setup smartmeter-p1";
-// the Content of the HTML response in case of Unautherized Access Default:empty
-String authFailResponse = "Authentication Failed";
+bool MQTTsecure = false;
+bool ESPnow = false;
 
 char TopicSub[MQTTTOPIC_LEN];  //topic to subscribe to
 char TopicPub[MQTTTOPIC_LEN];  //topic to publish to
