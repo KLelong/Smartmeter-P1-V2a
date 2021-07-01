@@ -253,14 +253,14 @@ void handlePostData() {
             }
             else
             if (httpserver.argName(i)=="ESPnow") {
-              if (httpserver.arg(i)=="false") EEPROMwriteString(ESPnowE_ADDR,"0",ESPnowE_LEN);
-              else  EEPROMwriteString(ESPnowE_ADDR,"1",ESPnowE_LEN);
+              if (httpserver.arg(i)=="false") EEPROMwriteBool(ESPnowE_ADDR,false);
+              else  EEPROMwriteBool(ESPnowE_ADDR,true);
               DEBUG_LOG("saved\n");
             }
             else
             if (httpserver.argName(i)=="MQTTs") {
-              if (httpserver.arg(i)=="false") EEPROMwriteString(MQTTSE_ADDR,"0",MQTTSE_LEN);
-              else  EEPROMwriteString(MQTTSE_ADDR,"1",MQTTSE_LEN);
+              if (httpserver.arg(i)=="false") EEPROMwriteBool(MQTTSE_ADDR,false);
+              else  EEPROMwriteBool(MQTTSE_ADDR,true);
               DEBUG_LOG("saved\n");
             }
           }

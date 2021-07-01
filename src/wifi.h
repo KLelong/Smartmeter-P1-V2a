@@ -9,8 +9,8 @@ Ticker ticker;
 void tick()
 {
   //toggle state
-  int state = digitalRead(BUILTIN_LED);  // get the current state of built-in LED
-  digitalWrite(BUILTIN_LED, !state);     // set pin to the opposite state
+  int state = digitalRead(LED_BUILTIN);  // get the current state of built-in LED
+  digitalWrite(LED_BUILTIN, !state);     // set pin to the opposite state
 }
 
 //gets called when WiFiManager enters configuration mode
@@ -79,7 +79,7 @@ void WiFiManagersetup() {
 
     ticker.detach();
   //keep LED on
-    digitalWrite(BUILTIN_LED, LOW);
+    digitalWrite(LED_BUILTIN, LOW);
    
     if (shouldSaveConfig) {
       DEBUG_LOG("saving config\n");

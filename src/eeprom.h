@@ -4,6 +4,34 @@
  * module to handle EEPROM
  */
 
+bool EEPROMreadBool(int add)
+{
+  unsigned char k;
+  DEBUG_LOG("r add:");
+  DEBUG_LOG(add);
+  DEBUG_LOG("\n");
+  
+  k=EEPROM.read(add);
+  return (k=='1');
+}
+
+void EEPROMwriteBool(int add, bool boolVal) {
+  bool mod_val;
+  
+  DEBUG_LOG("w add:");
+  DEBUG_LOG(add);
+  DEBUG_LOG("\n");
+  
+  mod_val=EEPROMreadBool(add)!=boolVal;
+  if (mod_val) {
+    DEBUG_LOG("modified");
+    if (boolVal) EEPROM.write(add,'1');
+    else EEPROM.write(add,'0');
+    EEPROM.commit();
+  }
+  DEBUG_LOG("\n");
+}
+
 String EEPROMreadString(int add, int maxlen)
 {
   int i;
@@ -152,21 +180,25 @@ void EEPROMsetup() {
 /*
 #define ESPnowP_ADDR ESPnowE_ADDR+ESPnowE_LEN 
 #define ESPnowP_LEN 16    // ESPnow peer address
-
+*/
 
   tempString=EEPROMreadString(MQTTSE_ADDR,MQTTSE_LEN);
-  if (tempString.length()>0) 
-    tempString.toCharArray(MQTTsecure,MQTTS_LEN);
+  if (tempString.length()>0) {
+    if (tempString.compareTo("0")==0) MQTTsecure=false;
+    else MQTTsecure=true;
+  } 
   DEBUG_LOG("secure mqtt :");
-  DEBUG_LOG(fingerprint);
+  DEBUG_LOG(MQTTsecure);
   DEBUG_LOG("\n");
 
   tempString=EEPROMreadString(ESPnowE_ADDR,ESPnowE_LEN);
-  if (tempString.length()>0) 
-    tempString.toCharArray(fingerprint,ESPnowE_LEN);
+  if (tempString.length()>0) {
+    if (tempString.compareTo("0")==0) ESPnow=false;
+    else ESPnow=true; 
+  }
   DEBUG_LOG("ESPnow :");
-  DEBUG_LOG(fingerprint);
-  DEBUG_LOG("\n"); */
+  DEBUG_LOG(ESPnow);
+  DEBUG_LOG("\n");
 }
 }
  
