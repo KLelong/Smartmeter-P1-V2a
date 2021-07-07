@@ -5,11 +5,12 @@
  */
 
 void SubCallback(char* topic, byte* payload, unsigned int length) {
+  unsigned int i;
 #ifdef DEBUG
   Serial.print("Message arrived [");
   Serial.print(topic);
   Serial.print("] ");
-  for (int i = 0; i < length; i++) {
+  for (i = 0; i < length; i++) {
     Serial.print((char)payload[i]);
   }
   Serial.println();
@@ -22,7 +23,7 @@ void SubCallback(char* topic, byte* payload, unsigned int length) {
     if (topicStr=="delay")
      {
       DEBUG_LOG("\ngood topic\n");
-      for (int i = 0; i < length; i++) {
+      for (i = 0; i < length; i++) {
         PayloadStr.concat((char)payload[i]);
       }
       PublishDelay=PayloadStr.toInt();
@@ -95,25 +96,7 @@ void reconnect() {
     }
   }
 }
-/*  old version
-void reconnect() {
-  String tempTopic;
-    DEBUG_LOG(mqtt_client);
-    DEBUG_LOG("\n");
-    DEBUG_LOG("Attempting MQTT connection...");
-    if (client.connect(mqtt_client,mqtt_client,mqtt_pass)) {
-      Serial.println("mqtt connected");
-      client.subscribe(TopicSub);
-    } 
-    else {
-      Serial.print("failed, rc=");
-      Serial.println(client.state());
-      Serial.println(" try again in 5 seconds");
-      // Wait 5 seconds before retrying
-      delay(5000);
-    }
-}
-*/
+
 void publishP1ToMqtt(){
   char msgpub[256];
   char output[256];

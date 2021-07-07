@@ -187,7 +187,7 @@ void handlePostData() {
   String tempStr;
 //  char temp[32];
 //  char temp1[32];
-  char msgpub[BUFF_LEN];
+//  char msgpub[BUFF_LEN];
   String message="";
 
  DEBUG_LOG("You called Post-data\n");

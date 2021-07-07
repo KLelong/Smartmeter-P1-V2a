@@ -34,7 +34,6 @@ void EEPROMwriteBool(int add, bool boolVal) {
 
 String EEPROMreadString(int add, int maxlen)
 {
-  int i;
   char data[maxlen];
   int len=0;
   unsigned char k;
