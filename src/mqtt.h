@@ -41,6 +41,9 @@ void SubCallback(char* topic, byte* payload, unsigned int length) {
 }
 
 void MQTTsetup(){ 
+
+  if (MQTTsecure)  sclient.setClient(espClientS);
+  else sclient.setClient(espClient);
   
   tempTopic=String(mqtt_topic);
   tempTopic.toCharArray(TopicPub,MQTTTOPIC_LEN);

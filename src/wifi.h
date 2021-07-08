@@ -75,7 +75,7 @@ void WiFiManagersetup() {
     DEBUG_LOG("mod fingerprint : ");
     DEBUG_LOG(mod_fingerprint);
     DEBUG_LOG("\n");
-    espClientS.setFingerprint(mod_fingerprint);
+    if (MQTTsecure) espClientS.setFingerprint(mod_fingerprint);
 
     ticker.detach();
   //keep LED on

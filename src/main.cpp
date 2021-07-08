@@ -72,7 +72,9 @@ const char* P1Version = "2.0alfa1";
 IPAddress mqttServerIP;
 WiFiManager wifiManager;
 WiFiClientSecure espClientS;
-PubSubClient sclient(espClientS);
+WiFiClient espClient;
+//PubSubClient sclient(espClientS);
+PubSubClient sclient;
 ESP8266WebServer httpserver(80);
 
 #define MAXLINELENGTH 64
