@@ -25,7 +25,7 @@
 /*
  * Version
  */
-const char* P1Version = "2.0alfa1";
+const char* P1Version = "2.0alfa2";
 
 #define DEBUG
 //
