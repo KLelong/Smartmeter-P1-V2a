@@ -89,7 +89,6 @@ void EEPROMsetup() {
     for (int i = 0; i < 512; i++) {
       EEPROM.write(i, 0);
     }
-//    EEPROM.commit();
     EEPROM.write(EEPROM_MAGIC_ADDR,highByte(EEPROM_MAGIC));
     EEPROM.write(EEPROM_MAGIC_ADDR+1,lowByte(EEPROM_MAGIC));
     EEPROM.commit();

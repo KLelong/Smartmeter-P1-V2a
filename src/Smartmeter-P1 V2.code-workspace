@@ -3,6 +3,10 @@
 		{
 			"name": "Smartmeter-P1 V2",
 			"path": ".."
+		},
+		{
+			"name": "async-tcp-test1",
+			"path": "../../../async-tcp-test1"
 		}
 	],
 	"settings": {}

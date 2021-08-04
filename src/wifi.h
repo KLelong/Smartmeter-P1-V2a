@@ -33,6 +33,7 @@ void saveConfigCallback () {
 }
 
 void WiFiManagersetup() {
+  WiFi.persistent(true);
   WiFi.mode(WIFI_STA);
   WiFi.hostname(hostName);
   DEBUG_LOG("start WiFiManager\n");
@@ -53,7 +54,7 @@ void WiFiManagersetup() {
     DEBUG_LOG("start WiFiManager debug off\n");
     wifiManager.setDebugOutput(false);
 #endif
-    wifiManager.setCustomHeadElement("<style>body{background-color: lightsalmon;font-family: Arial, Helvetica, sans-serif;}input{border-radius: 10px;}button{background-color:#128F76;border-radius: 10px;}</style>");
+//    wifiManager.setCustomHeadElement("<style>body{background-color: white;font-family: Arial, Helvetica, sans-serif;}input{border-radius: 10px;}button{background-color:#128F76;border-radius: 10px;}</style>");
 
     WiFiManagerParameter custom_hostname("hostname", "hostname", "", 40);
     wifiManager.addParameter(&custom_hostname);
