@@ -54,7 +54,7 @@ void WiFiManagersetup() {
     DEBUG_LOG("start WiFiManager debug off\n");
     wifiManager.setDebugOutput(false);
 #endif
-//    wifiManager.setCustomHeadElement("<style>body{background-color: white;font-family: Arial, Helvetica, sans-serif;}input{border-radius: 10px;}button{background-color:#128F76;border-radius: 10px;}</style>");
+    wifiManager.setCustomHeadElement("<style>body{background-color: white;font-family: Arial, Helvetica, sans-serif;}button{background-color:#000000;border-radius: 0px;}</style>");
 
     WiFiManagerParameter custom_hostname("hostname", "hostname", "", 40);
     wifiManager.addParameter(&custom_hostname);
